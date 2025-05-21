@@ -2,16 +2,29 @@ spring:
   application:
     name: starter-test
   datasource:
-    url: jdbc:postgresql://postgres:5432/tasks
-    username: admin
-    password: admin
+    url: jdbc:postgresql://localhost:5432/dev
+    username: postgres
+    password:
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      idle-timeout: 300000
+      connection-timeout: 20000
+      max-lifetime: 1200000
+      auto-commit: true
+      pool-name: HikariPool-1
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
   sql:
     init:
-      mode: always
+      mode: never
+  docker:
+    compose:
+      enabled: false
+  banner:
+    location: classpath:banner.txt
 
 logging:
   level:
